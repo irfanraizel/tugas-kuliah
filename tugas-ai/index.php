@@ -110,8 +110,6 @@ if (isset($_POST['cari'])) {
     <link rel="icon" type="image/x-icon" href="https://em-content.zobj.net/source/microsoft-teams/363/large-purple-circle_1f7e3.png">
     <title>Program BFS PHP</title>
     <style>
-        body {}
-
         .container {
             padding: 30px;
             background-color: #e8e8e8;
@@ -133,7 +131,7 @@ if (isset($_POST['cari'])) {
             <span class="navbar-brand mb-0">Program Searching BREADTH FIRST SEACH</span>
         </div>
     </nav>
-    <div class="container" style="border: 3px solid #9947c9;height:720px; width: 720px;">
+    <div class="container" style="border: 3px solid #9947c9;height:620px; width: 720px;">
         <form action="" method="post">
             <div class="form-label">Silahkan Pilih Lokasi Awal (INITIAL STATE)</div>
             <!-- Split dropend button -->
@@ -200,25 +198,20 @@ if (isset($_POST['cari'])) {
             </div>
             <button type="submit" class="btn btn-success" name="cari">Cari Jalur</button>
         </form>
-        <div class="hasil mt-4 border border-success p-1" style="height: 440px;">
+        <div class="hasil mt-4 border border-3 border-success p-1" style="height: 340px;">
             <?php
             if (isset($_POST['cari']) && $_POST['lokasiAwal'] != 'Pilih Lokasi' && $_POST['lokasiTujuan'] != 'Pilih Lokasi') {
             ?>
-                <h1 class="text-center border-bottom border-success pb-1" style="font-size: 30px;">Jalur Dari <?= $_POST['lokasiAwal'] ?> Ke <?= $_POST['lokasiTujuan'] ?> </h1>
+                <h1 class="text-center border-bottom border-2 border-success pb-2" style="font-size: 30px;">Jalur Dari <?= $_POST['lokasiAwal'] ?> Ke <?= $_POST['lokasiTujuan'] ?> </h1>
             <?php
             }
             ?>
             <?php
             if (@$shortestPath) {
-                echo implode(' -> ', $shortestPath);
+            ?>
+                <h4 class="py-3" style="font-family: 'Poppins', sans-serif;font-weight:300;"><?= implode('  ->  ', $shortestPath); ?></h4>
+            <?php
             }
-
-            // if (@$shortestPath) {
-            //     for($i = 1; $i <= $shortestPath.) {
-
-            //     }
-            // }
-
             ?>
         </div>
     </div>

@@ -51,17 +51,26 @@ if (isset($_POST['cari'])) {
 
         // Contoh graf dalam representasi matriks
         $graph = [
-            'Uniba' => array('Baros' => 1, 'Petir' => 1, 'Keragilan' => 1),
-            'Baros' => array('Uniba' => 1, 'Petir' => 1, 'Pandeglang' => 1),
-            'Petir' => array('Baros' => 1, 'Uniba' => 1, 'Keragilan' => 1, 'Rangkas Bitung' => 1),
-            'Keragilan' => array('Tangerang' => 1, 'Uniba' => 1, 'Petir' => 1, 'Rangkas Bitung' => 1),
-            'Pandeglang' => array('Baros' => 1, 'Rangkas Bitung' => 1, 'Picung' => 1),
-            'Rangkas Bitung' => array('Petir' => 1, 'Pandeglang' => 1, 'Gunung Kencana' => 1, 'Keragilan' => 1),
-            'Tangerang' => array('Keragilan' => 1),
-            'Picung' => array('Pandeglang' => 1, 'Gunung Kencana' => 1, 'Malingping' => 1),
+            'Merak' => array('Anyer' => 1, 'Cilegon' => 1),
+            'Cilegon' => array('Merak' => 1, 'Anyer' => 1, 'Serang' => 1),
+            'Serang' => array('Cilegon' => 1, 'Baros' => 1, 'Petir' => 1, 'Keragilan' => 1),
+            'Anyer' => array('Merak' => 1, 'Cilegon' => 1, 'Baros' => 1, 'Labuan' => 1),
+            'Labuan' => array('Anyer' => 1, 'Saketi' => 1),
+            'Baros' => array('Anyer' => 1, 'Pandeglang' => 1, 'Petir' => 1, 'Serang' => 1),
+            'Petir' => array('Serang' => 1, 'Baros' => 1, 'Rangkas Bitung' => 1, 'Keragilan' => 1),
+            'Keragilan' => array('Serang' => 1, 'Petir' => 1, 'Rangkas Bitung' => 1, 'Cikande' => 1),
+            'Cikande' => array('Keragilan' => 1, 'Rangkas Bitung' => 1, 'Tangerang' => 1),
+            'Pandeglang' => array('Baros' => 1, 'Saketi' => 1, 'Rangkas Bitung' => 1),
+            'Rangkas Bitung' => array('Petir' => 1, 'Pandeglang' => 1, 'Gunung Kencana' => 1, 'Jasinga' => 1, 'Cikande' => 1,  'Keragilan' => 1),
+            'Tangerang' => array('Cikande' => 1, 'Parung Panjang' => 1),
+            'Parung Panjang' => array('Tangerang' => 1, 'Jasinga' => 1),
+            'Jasinga' => array('Rangkas Bitung' => 1, 'Citorek' => 1, 'Parung Panjang' => 1),
+            'Saketi' => array('Labuan' => 1, 'Picung' => 1, 'Pandeglang' => 1),
+            'Picung' => array('Saketi' => 1, 'Gunung Kencana' => 1, 'Malingping' => 1),
             'Gunung Kencana' => array('Rangkas Bitung' => 1, 'Picung' => 1, 'Malingping' => 1),
-            'Malingping' => array('Sawarna' => 1, 'Picung' => 1, 'Gunung Kencana' => 1),
-            'Sawarna' => array('Malingping' => 1),
+            'Citorek' => array('Jasinga' => 1, 'Sawarna' => 1),
+            'Malingping' => array('Picung' => 1, 'Gunung Kencana' => 1, 'Sawarna' => 1),
+            'Sawarna' => array('Malingping' => 1, 'Citorek' => 1),
         ];
 
         // $startNode = 'PT';
@@ -135,15 +144,24 @@ if (isset($_POST['cari'])) {
                 </button>
                 <ul class="dropdown-menu">
                     <!-- Dropdown menu links -->
-                    <li><a class="item1 dropdown-item" href="#">Uniba</a></li>
+                    <li><a class="item1 dropdown-item" href="#">Merak</a></li>
+                    <li><a class="item1 dropdown-item" href="#">Cilegon</a></li>
+                    <li><a class="item1 dropdown-item" href="#">Anyer</a></li>
+                    <li><a class="item1 dropdown-item" href="#">Serang</a></li>
                     <li><a class="item1 dropdown-item" href="#">Keragilan</a></li>
-                    <li><a class="item1 dropdown-item" href="#">Petir</a></li>
+                    <li><a class="item1 dropdown-item" href="#">Cikande</a></li>
                     <li><a class="item1 dropdown-item" href="#">Tangerang</a></li>
                     <li><a class="item1 dropdown-item" href="#">Baros</a></li>
+                    <li><a class="item1 dropdown-item" href="#">Petir</a></li>
                     <li><a class="item1 dropdown-item" href="#">Rangkas Bitung</a></li>
                     <li><a class="item1 dropdown-item" href="#">Pandeglang</a></li>
+                    <li><a class="item1 dropdown-item" href="#">Parung Panjang</a></li>
+                    <li><a class="item1 dropdown-item" href="#">Jasinga</a></li>
+                    <li><a class="item1 dropdown-item" href="#">Labuan</a></li>
+                    <li><a class="item1 dropdown-item" href="#">Saketi</a></li>
                     <li><a class="item1 dropdown-item" href="#">Picung</a></li>
                     <li><a class="item1 dropdown-item" href="#">Gunung Kencana</a></li>
+                    <li><a class="item1 dropdown-item" href="#">Citorek</a></li>
                     <li><a class="item1 dropdown-item" href="#">Malingping</a></li>
                     <li><a class="item1 dropdown-item" href="#">Sawarna</a></li>
                 </ul>
@@ -158,15 +176,24 @@ if (isset($_POST['cari'])) {
                 </button>
                 <ul class="dropdown-menu">
                     <!-- Dropdown menu links -->
-                    <li><a class="item2 dropdown-item" href="#">Uniba</a></li>
+                    <li><a class="item2 dropdown-item" href="#">Merak</a></li>
+                    <li><a class="item2 dropdown-item" href="#">Cilegon</a></li>
+                    <li><a class="item2 dropdown-item" href="#">Anyer</a></li>
+                    <li><a class="item2 dropdown-item" href="#">Serang</a></li>
                     <li><a class="item2 dropdown-item" href="#">Keragilan</a></li>
-                    <li><a class="item2 dropdown-item" href="#">Petir</a></li>
+                    <li><a class="item2 dropdown-item" href="#">Cikande</a></li>
                     <li><a class="item2 dropdown-item" href="#">Tangerang</a></li>
                     <li><a class="item2 dropdown-item" href="#">Baros</a></li>
+                    <li><a class="item2 dropdown-item" href="#">Petir</a></li>
                     <li><a class="item2 dropdown-item" href="#">Rangkas Bitung</a></li>
                     <li><a class="item2 dropdown-item" href="#">Pandeglang</a></li>
+                    <li><a class="item2 dropdown-item" href="#">Parung Panjang</a></li>
+                    <li><a class="item2 dropdown-item" href="#">Jasinga</a></li>
+                    <li><a class="item2 dropdown-item" href="#">Labuan</a></li>
+                    <li><a class="item2 dropdown-item" href="#">Saketi</a></li>
                     <li><a class="item2 dropdown-item" href="#">Picung</a></li>
                     <li><a class="item2 dropdown-item" href="#">Gunung Kencana</a></li>
+                    <li><a class="item2 dropdown-item" href="#">Citorek</a></li>
                     <li><a class="item2 dropdown-item" href="#">Malingping</a></li>
                     <li><a class="item2 dropdown-item" href="#">Sawarna</a></li>
                 </ul>

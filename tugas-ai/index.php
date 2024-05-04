@@ -70,7 +70,7 @@ if (isset($_POST['cari'])) {
             'Gunung Kencana' => array('Rangkas Bitung' => 1, 'Picung' => 1, 'Malingping' => 1),
             'Citorek' => array('Jasinga' => 1, 'Sawarna' => 1),
             'Malingping' => array('Picung' => 1, 'Gunung Kencana' => 1, 'Sawarna' => 1),
-            'Sawarna' => array('Malingping' => 1, 'Citorek' => 1),
+            'Sawarna' => array('Malingping' => 1, 'Citorek' => 1)
         ];
 
         $shortestPath = bfs($graph, $lokasiAwal, $lokasiTujuan);
@@ -190,13 +190,17 @@ if (isset($_POST['cari'])) {
         <div class="hasil mt-4 border border-3 border-success p-1" style="height: 340px;">
             <?php
             if (isset($_POST['cari']) && $_POST['lokasiAwal'] != 'Pilih Lokasi' && $_POST['lokasiTujuan'] != 'Pilih Lokasi') {
+                if ($_POST['lokasiAwal'] === $_POST['lokasiTujuan']) {
+                    echo "<script>alert('lokasi tidak boleh sama');</script>";
+                } else {
             ?>
-                <h1 class="text-center border-bottom border-2 border-success pb-2" style="font-size: 30px;">Jalur Dari <?= $_POST['lokasiAwal'] ?> Ke <?= $_POST['lokasiTujuan'] ?> </h1>
+                    <h1 class="text-center border-bottom border-2 border-success pb-2" style="font-size: 30px;">Jalur Dari <?= $_POST['lokasiAwal'] ?> Ke <?= $_POST['lokasiTujuan'] ?> </h1>
             <?php
+                }
             }
             ?>
             <?php
-            if (@$shortestPath) {
+            if (@$shortestPath && $lokasiAwal != $lokasiTujuan) {
             ?>
                 <h4 class="py-3" style="font-family: 'Poppins', sans-serif;font-weight:300;"><?= implode('  ->  ', $shortestPath); ?></h4>
             <?php

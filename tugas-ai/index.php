@@ -73,18 +73,7 @@ if (isset($_POST['cari'])) {
             'Sawarna' => array('Malingping' => 1, 'Citorek' => 1),
         ];
 
-        // $startNode = 'PT';
-        // $goalNode = 'SWN';
-
         $shortestPath = bfs($graph, $lokasiAwal, $lokasiTujuan);
-
-        // var_dump($shortestPath);
-
-        // if ($shortestPath === null) {
-        //     echo "Tidak ada jalur yang ditemukan dari $lokasiAwal ke $lokasiTujuan.";
-        // } else {
-        //     echo "Jalur terpendek dari $lokasiAwal ke $lokasiTujuan: " . implode(' -> ', $shortestPath);
-        // }
     } else {
         echo "<script>alert('Masukkan Lokasi Yang Sesuai');</script>";
     }

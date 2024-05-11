@@ -257,7 +257,7 @@ if (isset($_POST['cari'])) {
                 <h4 class="pt-3" style="font-family: 'Poppins', sans-serif;font-weight:300;">Estimasi Total Jarak yang ditempuh : <span class="text-primary fw-bold"><?= $totalDistance ?> KM</span></h4>
                 <p class="p" style="font-family: 'Poppins', sans-serif;font-weight:300;">Estimasi Waktu dengan kecepatan rata-rata 50km/j : <span class="text-primary fw-bold"><?= $totalWaktu ?> JAM</span></p>
 
-                <div class="justify-content-center"><img src="images/<?= $lokasiAwal ?>-<?= $lokasiTujuan ?>.jpg" alt="Map" width="450" style="display:block;margin-left:auto;margin-right:auto;"></div>
+                <div class="justify-content-center"><img src="images/<?= $lokasiAwal ?>-<?= $lokasiTujuan ?>.jpg" alt="" width="450" style="display:block;margin-left:auto;margin-right:auto;"></div>
             <?php
             }
             ?>

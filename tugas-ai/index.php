@@ -160,7 +160,7 @@ if (isset($_POST['cari'])) {
             <span class="navbar-brand mb-0">Program Searching BREADTH FIRST SEACH</span>
         </div>
     </nav>
-    <div class="container" style="border: 3px solid #9947c9;height:980px; width: 720px;">
+    <div class="container" style="border: 3px solid #9947c9;height:1080px; width: 720px;">
         <form action="" method="post">
             <div class="form-label">Silahkan Pilih Lokasi Awal (INITIAL STATE)</div>
             <!-- Split dropend button -->
@@ -227,7 +227,7 @@ if (isset($_POST['cari'])) {
             </div>
             <button type="submit" class="btn btn-success" name="cari">Cari Jalur</button>
         </form>
-        <div class="hasil mt-4 border border-3 border-success p-1" style="height: 700px;">
+        <div class="hasil mt-4 border border-3 border-success p-1" style="height: 800px;">
             <?php
             if (isset($_POST['cari']) && $_POST['lokasiAwal'] != 'Pilih Lokasi' && $_POST['lokasiTujuan'] != 'Pilih Lokasi') {
                 if ($_POST['lokasiAwal'] === $_POST['lokasiTujuan']) {

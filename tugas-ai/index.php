@@ -74,6 +74,46 @@ if (isset($_POST['cari'])) {
         ];
 
         $shortestPath = bfs($graph, $lokasiAwal, $lokasiTujuan);
+
+        // Informasi jarak antara setiap pasangan node
+        $distances = array(
+            'Merak' => array('Anyer' => 25, 'Cilegon' => 14),
+            'Cilegon' => array('Merak' => 14, 'Anyer' => 17, 'Serang' => 18),
+            'Serang' => array('Cilegon' => 18, 'Baros' => 12, 'Petir' => 16, 'Keragilan' => 17),
+            'Anyer' => array('Merak' => 25, 'Cilegon' => 17, 'Baros' => 40, 'Labuan' => 44),
+            'Labuan' => array('Anyer' => 44, 'Saketi' => 22),
+            'Baros' => array('Anyer' => 40, 'Pandeglang' => 15, 'Petir' => 9, 'Serang' => 12),
+            'Petir' => array('Serang' => 16, 'Baros' => 9, 'Rangkas Bitung' => 20, 'Keragilan' => 16),
+            'Keragilan' => array('Serang' => 17, 'Petir' => 16, 'Rangkas Bitung' => 30, 'Cikande' => 12),
+            'Cikande' => array('Keragilan' => 12, 'Rangkas Bitung' => 29, 'Tangerang' => 42),
+            'Pandeglang' => array('Baros' => 15, 'Saketi' => 20, 'Rangkas Bitung' => 20),
+            'Rangkas Bitung' => array('Petir' => 20, 'Pandeglang' => 20, 'Gunung Kencana' => 46, 'Jasinga' => 35, 'Cikande' => 29,  'Keragilan' => 30),
+            'Tangerang' => array('Cikande' => 42, 'Parung Panjang' => 24),
+            'Parung Panjang' => array('Tangerang' => 24, 'Jasinga' => 25),
+            'Jasinga' => array('Rangkas Bitung' => 35, 'Citorek' => 45, 'Parung Panjang' => 25),
+            'Saketi' => array('Labuan' => 22, 'Picung' => 16, 'Pandeglang' => 20),
+            'Picung' => array('Saketi' => 16, 'Gunung Kencana' => 17, 'Malingping' => 43),
+            'Gunung Kencana' => array('Rangkas Bitung' => 46, 'Picung' => 17, 'Malingping' => 35),
+            'Citorek' => array('Jasinga' => 45, 'Sawarna' => 60),
+            'Malingping' => array('Picung' => 43, 'Gunung Kencana' => 35, 'Sawarna' => 49),
+            'Sawarna' => array('Malingping' => 49, 'Citorek' => 60)
+        );
+
+        // Ambil jarak antara node-node yang terpilih oleh algoritma BFS
+        $totalDistance = 0;
+        $totalWaktu = 0;
+        $selectedDistances = array();
+        foreach ($shortestPath as $index => $node) {
+            if ($index < count($shortestPath) - 1) {
+                $nextNode = $shortestPath[$index + 1];
+                if (isset($distances[$node][$nextNode])) {
+                    $selectedDistances[$node][$nextNode] = $distances[$node][$nextNode];
+                    $totalDistance += $distances[$node][$nextNode];
+                }
+            }
+        }
+        // estimasi waktu
+        $totalWaktu = $totalDistance / 50;
     } else {
         echo "<script>alert('Masukkan Lokasi Yang Sesuai');</script>";
     }
@@ -120,7 +160,7 @@ if (isset($_POST['cari'])) {
             <span class="navbar-brand mb-0">Program Searching BREADTH FIRST SEACH</span>
         </div>
     </nav>
-    <div class="container" style="border: 3px solid #9947c9;height:620px; width: 720px;">
+    <div class="container" style="border: 3px solid #9947c9;height:980px; width: 720px;">
         <form action="" method="post">
             <div class="form-label">Silahkan Pilih Lokasi Awal (INITIAL STATE)</div>
             <!-- Split dropend button -->
@@ -187,7 +227,7 @@ if (isset($_POST['cari'])) {
             </div>
             <button type="submit" class="btn btn-success" name="cari">Cari Jalur</button>
         </form>
-        <div class="hasil mt-4 border border-3 border-success p-1" style="height: 340px;">
+        <div class="hasil mt-4 border border-3 border-success p-1" style="height: 700px;">
             <?php
             if (isset($_POST['cari']) && $_POST['lokasiAwal'] != 'Pilih Lokasi' && $_POST['lokasiTujuan'] != 'Pilih Lokasi') {
                 if ($_POST['lokasiAwal'] === $_POST['lokasiTujuan']) {
@@ -203,6 +243,21 @@ if (isset($_POST['cari'])) {
             if (@$shortestPath && $lokasiAwal != $lokasiTujuan) {
             ?>
                 <h4 class="py-3" style="font-family: 'Poppins', sans-serif;font-weight:300;"><?= implode('  ->  ', $shortestPath); ?></h4>
+
+                <?php
+                // Iterasi melalui setiap node yang terpilih
+                foreach ($selectedDistances as $node => $neighbors) {
+                    //Iterasi melalui setiap node tetangga yang terpilih
+                    foreach ($neighbors as $neighbor => $distance) {
+                        echo "<p style='margin-bottom:0px; font-weight:500;'>$node -> <strong class='text-primary'>$distance KM</strong> -> $neighbor</p>";
+                    }
+                }
+                ?>
+
+                <h4 class="pt-3" style="font-family: 'Poppins', sans-serif;font-weight:300;">Estimasi Total Jarak yang ditempuh : <span class="text-primary fw-bold"><?= $totalDistance ?> KM</span></h4>
+                <p class="p" style="font-family: 'Poppins', sans-serif;font-weight:300;">Estimasi Waktu dengan kecepatan rata-rata 50km/j : <span class="text-primary fw-bold"><?= $totalWaktu ?> JAM</span></p>
+
+                <div class="justify-content-center"><img src="images/<?= $lokasiAwal ?>-<?= $lokasiTujuan ?>.jpg" alt="Map" width="450" style="display:block;margin-left:auto;margin-right:auto;"></div>
             <?php
             }
             ?>
